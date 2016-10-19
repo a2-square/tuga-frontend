@@ -1,2 +1,7 @@
 # tuga-frontend(under development)
-##Introducation
+##Install node modules
+### npm install
+
+##To start
+###gulp
+
