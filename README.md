@@ -1,2 +1,2 @@
-# tuga-frontend ##(under development)
-start
+# tuga-frontend(under development)
+##Introducation
