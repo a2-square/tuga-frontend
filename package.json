@@ -1,0 +1,12 @@
+{
+  "name": "OpportunityDealer-Client",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "gulp": "~3.9.1",
+    "browser-sync": "~2.12.8"
+  },
+  "dependencies": {
+    "chalk": "~1.1.3"
+  }
+}

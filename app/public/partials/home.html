@@ -1,0 +1,77 @@
+<div class="text-center">
+    <div ng-show="!userSignupForm" style="margin-top: 150px">
+        <div>
+            <!-- <span class="login-text" style="color:#286090;">LOGIN</span> -->
+            <a style="cursor:pointer;" ng-click="login(userLoginData, 'facebook')"><img style="width:33%" src="/public//images/loginfacebook.png"></a>
+            <br>
+            <br>
+            <a style="cursor:pointer;" ng-click="login(userLoginData, 'linkedin')"><img style="width:33%" ; src="/public//images/loginlinkedin.png"></a>
+        </div>
+        <div style="margin-top: 23px;">
+            <span style="font-weight:bolder;">OR</span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4">
+            <form name="login_form" valid-submit="login(userLoginData, 'local')" style="margin-top:30px;" novalidate>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                    <input class="form-control" type="email" name="email" placeholder="email" ng-model="userLoginData.email" required>
+                </div>
+                <p class="error_form" ng-show="login_form.$submitted && login_form.email.$invalid">
+                    *required
+                </p>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                    <input class="form-control" name="password" type="password" placeholder="Password" ng-model="userLoginData.password" required>
+                </div>
+                <p class="error_form" ng-show="login_form.$submitted && login_form.password.$invalid">
+                    *required
+                </p>
+                <div class="form-group">
+                    <input class="btn btn-primary" style="width:100%;" type="submit" ng-click="submitted==true" value="Login">
+                </div>
+            </form>
+            <p>
+                <span style="float:right; font-size:14px; font-weight:bolder;">Don't have an account? <span style="cursor:pointer;color:#286090;font-weight:bolder;" ng-click="userSignupForm = !userSignupForm; clear()">Sign Up</span></span>
+            </p>
+        </div>
+    </div>
+    <div ng-show="userSignupForm" style="margin-top:165px">
+        <div>
+            <span class="login-text" style="color:#286090;">SIGN UP</span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4">
+            <form name="sign_up_form" valid-submit="signup(userSignUpData)" style="margin-top:30px;" novalidate>
+                <div class="form-group">
+                    <input class="form-control remove_border" name="signFName" type="text" placeholder="First Name" ng-model="userSignUpData.firstName" required>
+                    <p class="error_form" ng-show="sign_up_form.$submitted && sign_up_form.signFName.$invalid">
+                        *required
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control remove_border" name="signLName" type="text" placeholder="Last Name" ng-model="userSignUpData.lastName" required>
+                    <p class="error_form" ng-show="sign_up_form.$submitted && sign_up_form.signLName.$invalid">
+                        *required
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control remove_border" name="signUser" type="email" placeholder="email" ng-model="userSignUpData.email" required>
+                    <p class="error_form" ng-show="sign_up_form.$submitted && sign_up_form.signUser.$invalid">
+                        *required
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control remove_border" name="signPassword" type="password" placeholder="Password" ng-model="userSignUpData.password" required>
+                    <p class="error_form" ng-show="sign_up_form.$submitted && sign_up_form.signPassword.$invalid">
+                        *required
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" style="width:100%;" type="submit" ng-click="submitted==true" value="Sign Up">
+                </div>
+            </form>
+            <p><span style="float:right; font-size:14px;font-weight:bolder;">Already have an account? <span style="cursor:pointer;color:#286090;font-weight:bolder" ng-click="userSignupForm = !userSignupForm; clear()">Login</span></span>
+                <br>
+            </p>
+        </div>
+    </div>
+</div>

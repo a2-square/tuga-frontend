@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="TugaApp">
+
+<head>
+    <title>Tuga Frontend</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/angular-toasty.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/font-awesome/css/font-awesome.min.css">
+
+    <script src="javascripts/vendor/jquery-1.12.3.min.js"></script>
+    <script src="javascripts/vendor/bootstrap.min.js"></script>
+    <script src="javascripts/vendor/angular.min.js"></script>
+    <script src="javascripts/vendor/angular-route.min.js"></script>
+    <script src="javascripts/vendor/angular-toasty.min.js"></script>
+    <script src="javascripts/vendor/ngStorage.min.js"></script>
+
+    <script src="public/app.js"></script>
+    <script src="public/directives/directive.js"></script>
+    <script src="public/controllers/userController.js"></script>
+
+</head>
+
+<body>
+    <div ng-view=""></div>
+    <div ng-show="waiting" id="overlay">
+        <span style="position: fixed;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color:#009BFC;font-size:40px;"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></span>
+        <span style="position: fixed;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color:#009BFC;font-size:40px;">Wait</span>
+    </div>
+    <toasty class="toasty-position-bottom-right"></toasty>
+</body>
+</html>
