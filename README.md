@@ -1,8 +1,14 @@
 # tuga-frontend(under development)
 
-##Install node modules:
-### npm install
+## Install
 
-##To start:
-###gulp
+```
+$ npm install
+```
 
+## Run
+
+``````
+$ gulp
+
+``````
