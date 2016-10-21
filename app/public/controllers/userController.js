@@ -1,11 +1,18 @@
-TugaApp.controller('homeController',['$scope', '$http', '$location', '$localStorage', 'toasty', '$rootScope', 
+TugaApp.controller('homeController',['$scope', '$http', '$location', '$localStorage', 'toasty', '$rootScope',
     function($scope, $http, $location, $localStorage, toasty, $rootScope) {
 
-    var server = "http://localhost:7000";
+/////////////////////////Config and Default Portion////////////////////////////
+
+    var beforeLogServer = "http://localhost:7000";
+    var afterLogServer = "http://localhost:7000/api"
+
+    $scope.userData = $localStorage.userData;
+
+//////////////////////////////////////////////////////////////////////////////
 
     $scope.signup = function(data) {
         $rootScope.waiting = true;
-        $http.post(server + '/signup', data).success(function(response) {
+        $http.post(beforeLogServer + '/signup', data).success(function(response) {
             if (response.authentication == true) {
                 $scope.userSignupForm = false;
                 toasty.info({
@@ -24,80 +31,29 @@ TugaApp.controller('homeController',['$scope', '$http', '$location', '$localStor
         });
     }
 
-    $scope.login = function(data, type) {
-        if (type == "linkedin") {
-        window.open(server + '/auth/linkedin',"_blank", "height=350px,width=750px,alwaysRaised=yes");
-
-/*            $rootScope.waiting = true;
-            $http.get(server + '/auth/linkedin').success(function(response) {
-                $rootScope.waiting = false;
-                if (response.authentication == true) {
-                    $location.path('/dashboard');
-                    toasty.info({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                } else {
-                    toasty.error({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                }
-
-            })
-*/
-        } else if (type == "facebook") {
-            window.open(server + '/auth/facebook',"_blank", "height=350px,width=750px,alwaysRaised=yes");
-            //$rootScope.waiting = true;
-/*            $http.get(server + '/auth/facebook').success(function(response) {
-                $rootScope.waiting = false;
-                if (response.authentication == true) {
-                    $location.path('/dashboard');
-                    toasty.info({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                } else {
-                    toasty.error({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                }
-
-            })*/
-
-        } else {
-            $rootScope.waiting = true;
-            $http.post(server + '/login', data).success(function(response) {
-                if (response.authentication == true) {
-                    $location.path('/dashboard');
-                    toasty.info({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                } else {
-                    $rootScope.waiting = false;
-                    toasty.error({
-                        title: 'Login Notification',
-                        msg: response.message,
-                        showClose: true,
-                    })
-                }
-
-            })
-
-        }
+    $scope.login = function(data){
+        $rootScope.waiting = true;
+        $http.post(beforeLogServer + '/login', data).success(function(response){
+            $rootScope.waiting = false;
+            if(response.authentication==true){
+                $localStorage.userData = response.data;
+                $http.defaults.headers.common['access_token'] = response.access_token;
+                $location.path('/dashboard');    
+            }else{
+                toasty.error({
+                    title: 'Login Notification',
+                    msg: response.message,
+                    showClose: true,
+                })
+            }
+            
+        })
     }
-
 
     $scope.logout = function(){
         $rootScope.waiting = true;
-        $http.get(server +'/logout').success(function(response){
+        $http.get(afterLogServer +'/logout').success(function(response){
+            $http.defaults.headers.common['access_token'] = " ";
             if(response.authentication==true){
                 $location.path('/');
                 toasty.info({

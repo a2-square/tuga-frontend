@@ -1,2 +1,25 @@
-<a ng-click="logout()">Logout</a>
-<p>Welcome To Tuga Dashboard</p>
+<nav class="navbar navbar-inverse" style="background-color:#3595E2; border:none;">
+    <div class="container-fluid">
+        <div class="nav navbar-nav navbar-right">
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary" style="min-height: 50px;padding: 13px;"><i class="fa fa-user fa-fw"></i>{{userData.local.firstName}} {{userData.local.lastName}}</a>
+                <a href="#" data-toggle="dropdown" style="min-height: 50px;padding: 13px;" class="btn btn-primary dropdown-toggle" aria-expanded="true">
+                    <span title="Toggle dropdown menu" class="fa fa-caret-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i>Delete Account</a></li>
+                    <li><a href="#"><i class="fa fa-ban fa-fw"></i>De-Activate Account</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="logout()" style="cursor:pointer;"><i class="fa fa-power-off"></i>logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="text-center">
+    <div>
+        <span style="font-weight: bolder; font-size: 20px;">Welcome To Dashboard {{userData.local.firstName}}!</span><br>
+        <span>Your login is Secure with Passport!</span>
+    </div>
+</div>
